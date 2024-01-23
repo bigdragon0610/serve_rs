@@ -1,14 +1,16 @@
 use std::env::current_dir;
-use std::fs;
 use std::io::{BufRead, BufReader, Write};
 use std::net::{TcpListener, TcpStream};
+use std::{fs, thread};
 
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:5500").expect("Port 5500 is already in use");
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
-        handle_connection(stream);
+        thread::spawn(|| {
+            handle_connection(stream);
+        });
     }
 }
 
