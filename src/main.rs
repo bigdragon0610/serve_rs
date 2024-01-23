@@ -5,6 +5,7 @@ use std::{fs, thread};
 
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:5500").expect("Port 5500 is already in use");
+    println!("Server is available at http://127.0.0.1:5500");
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
