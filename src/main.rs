@@ -22,9 +22,9 @@ fn handle_connection(mut stream: TcpStream) {
         return;
     }
 
-    let relative_path = line.split_whitespace().nth(1).unwrap();
+    let relative_path = line.split_whitespace().nth(1).unwrap(); // "/path/to/file_or_dir"
     let relative_path = if relative_path.len() == 1 {
-        ""
+        "" // "/" -> ""
     } else {
         relative_path
     };
